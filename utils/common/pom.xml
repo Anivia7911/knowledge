@@ -5,20 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.wch</groupId>
-        <artifactId>knowledge</artifactId>
+        <artifactId>utils</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>utils</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>common</artifactId>
 
-    <modules>
-        <module>service-dependency</module>
-        <module>common</module>
-    </modules>
-
-    <dependencies>
-
-    </dependencies>
 
 </project>

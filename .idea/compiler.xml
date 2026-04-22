@@ -9,15 +9,18 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.44/lombok-1.18.44.jar" />
         </processorPath>
-        <module name="web" />
+        <module name="common" />
+        <module name="service-dependency" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api" options="-parameters" />
+      <module name="common" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="knowledge" options="-parameters" />
+      <module name="service-dependency" options="-parameters" />
       <module name="services" options="-parameters" />
       <module name="utils" options="-parameters" />
       <module name="web" options="-parameters" />

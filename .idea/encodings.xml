@@ -9,8 +9,11 @@
     <file url="file://$PROJECT_DIR$/services/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/utils/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/utils/service-dependency/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/utils/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/web/src/main/resources" charset="UTF-8" />
   </component>
 </project>
