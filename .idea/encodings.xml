@@ -5,6 +5,10 @@
     <file url="file://$PROJECT_DIR$/api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/file-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/knowledge-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/preview-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/rag/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wch</groupId>
+        <artifactId>services</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>file-service</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!--Rados-->
+        <dependency>
+            <groupId>com.ceph</groupId>
+            <artifactId>rados</artifactId>
+            <version>0.6.0</version>
+        </dependency>
+
+        <!--Cephfs文件系统依赖-->
+        <dependency>
+            <groupId>com.ceph</groupId>
+            <artifactId>libcephfs</artifactId>
+            <version>0.80.5</version>
+        </dependency>
+
+        <!--swift-->
+        <dependency>
+            <groupId>org.javaswift</groupId>
+            <artifactId>joss</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -11,6 +11,12 @@
 
     <artifactId>services</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>file-service</module>
+        <module>knowledge-service</module>
+        <module>preview-service</module>
+        <module>rag</module>
+    </modules>
 
     <dependencies>
         <dependency>

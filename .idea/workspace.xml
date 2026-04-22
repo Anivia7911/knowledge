@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1586a86f-c4bc-4311-a753-540ee5fff7ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/common/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/common/src/main/java/com/wch/common/resp/RespCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/common/src/main/java/com/wch/common/resp/RespResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/service-dependency/pom.xml" afterDir="false" />
+    <list default="true" id="1586a86f-c4bc-4311-a753-540ee5fff7ce" name="Changes" comment="build">
+      <change afterPath="$PROJECT_DIR$/services/file-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/FileApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/conf/ContainerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/controller/FileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/service/FileHandleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/file-service/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/knowledge-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/preview-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/rag/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,23 +66,30 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/project/java&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/project/java/knowledge/utils/common/src/main/java/com/wch/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/project/java",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "D:/project/java/knowledge/services/rag/src/main/java/com/wch/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.KnowledgeApplication">
+    <configuration name="FileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="file-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wch.file.FileApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="KnowledgeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="knowledge" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.wch.knowledge.KnowledgeApplication" />
@@ -103,12 +113,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1776840784465</updated>
-      <workItem from="1776840785506" duration="2454000" />
+      <workItem from="1776840785506" duration="5450000" />
     </task>
+    <task id="LOCAL-00001" summary="build">
+      <option name="closed" value="true" />
+      <created>1776843253043</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776843253043</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="build" />
+    <option name="LAST_COMMIT_MESSAGE" value="build" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

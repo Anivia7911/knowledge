@@ -1,0 +1,24 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: file-service
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
+        server-addr: 116.205.187.100:8848
+      discovery:
+        server-addr: 116.205.187.100:8848
+
+ceph:
+  username:
+  password:
+  authUrl: #接口访问路径
+  defaultContainerName: #默认容器名
+cephurl: http://localhost:8082/file/download/ #图片路径
+
+#日志
+logging:
+  pattern:
+    console: "%msg%n"
