@@ -18,15 +18,3 @@ spring:
   config:
     import:
       - optional:nacos:file-service.yaml
-
-#ceph:
-#  username: root
-#  password: 123456
-#  authUrl:  #接口访问路径
-#  defaultContainerName: #默认容器名
-#cephurl: http://localhost:8082/file/download/ #图片路径
-
-#日志
-logging:
-  pattern:
-    console: "%msg%n"
