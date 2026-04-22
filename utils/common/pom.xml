@@ -7,10 +7,17 @@
         <groupId>com.wch</groupId>
         <artifactId>utils</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>common</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.wch</groupId>
+            <artifactId>service-dependency</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

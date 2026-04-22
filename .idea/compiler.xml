@@ -2,36 +2,36 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Annotation profile for knowledge" enabled="true">
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.44/lombok-1.18.44.jar" />
-        </processorPath>
-        <module name="rag" />
         <module name="service-dependency" />
         <module name="common" />
-        <module name="file-service" />
         <module name="preview-service" />
         <module name="knowledge-service" />
+        <module name="es-api" />
+        <module name="rag" />
+        <module name="file-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="api" options="-parameters" />
+      <module name="api" options="" />
       <module name="common" options="-parameters" />
+      <module name="es-api" options="-parameters" />
       <module name="file-service" options="-parameters" />
-      <module name="gateway" options="-parameters" />
-      <module name="knowledge" options="-parameters" />
+      <module name="gateway" options="" />
+      <module name="knowledge" options="" />
       <module name="knowledge-service" options="-parameters" />
       <module name="preview-service" options="-parameters" />
       <module name="rag" options="-parameters" />
       <module name="service-dependency" options="-parameters" />
-      <module name="services" options="-parameters" />
-      <module name="utils" options="-parameters" />
-      <module name="web" options="-parameters" />
+      <module name="services" options="" />
+      <module name="utils" options="" />
+      <module name="web" options="" />
     </option>
   </component>
 </project>

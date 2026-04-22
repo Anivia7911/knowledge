@@ -5,24 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.wch</groupId>
-        <artifactId>knowledge</artifactId>
+        <artifactId>api</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>services</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>file-service</module>
-        <module>knowledge-service</module>
-        <module>preview-service</module>
-        <module>rag</module>
-    </modules>
+    <artifactId>es-api</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
+        <!--ElasticSearch-->
         <dependency>
-            <groupId>com.wch</groupId>
-            <artifactId>common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
     </dependencies>
 

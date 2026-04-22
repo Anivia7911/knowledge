@@ -1,4 +1,4 @@
-package com.wch.common.resp;
+package com.wch.common.model.resp;
 
 /**
  * @author: Jie Bugui

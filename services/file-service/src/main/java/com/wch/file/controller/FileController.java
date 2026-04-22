@@ -1,6 +1,6 @@
 package com.wch.file.controller;
 
-import com.wch.common.resp.RespResult;
+import com.wch.common.model.resp.RespResult;
 import com.wch.file.service.FileHandleService;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;

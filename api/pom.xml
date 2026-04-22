@@ -11,6 +11,9 @@
 
     <artifactId>api</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>es-api</module>
+    </modules>
 
     <dependencies>
 

@@ -14,12 +14,12 @@ public class FileHandleService {
 
     private Container container;
 
-    @Autowired
-    void setBean(
-            Container container
-    ) {
-        this.container = container;
-    }
+//    @Autowired
+//    void setBean(
+//            Container container
+//    ) {
+//        this.container = container;
+//    }
 
     /**
      * 文件上传
