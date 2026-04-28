@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
+        server-addr: 192.168.10.146:8848
+      discovery:
+        server-addr: 192.168.10.146:8848
+  config:
+    import:
+      - optional:nacos:gateway.yaml
