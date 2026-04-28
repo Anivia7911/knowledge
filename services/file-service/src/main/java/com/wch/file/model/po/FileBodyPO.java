@@ -1,0 +1,38 @@
+package com.wch.file.model.po;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.wch.common.model.po.BasePO;
+import com.wch.common.trivial.enumdata.FileSchemeEnum;
+import com.wch.common.trivial.enumdata.FileTypeEnum;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * @author: Jie Bugui
+ * @create: 2025-04-22 16:48
+ */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@TableName("file_body")
+public class FileBodyPO extends BasePO {
+
+    /*
+     * 大小
+     * */
+    private long size;
+
+    /*
+     * 文件类型
+     * */
+    private FileTypeEnum type;
+
+    /*
+     * 文件协议
+     * */
+    private FileSchemeEnum scheme;
+
+    /*
+     * 版本
+     * */
+    private Integer version;
+}

@@ -2,16 +2,14 @@ package com.wch.file.service;
 
 import org.javaswift.joss.model.Container;
 import org.javaswift.joss.model.StoredObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @author: Jie Bugui
- * @create: 2025-04-22 16:17
+ * @create: 2026-04-29 4:06
  */
-@Component
-public class FileHandleService {
-
+@Service
+public class FileService {
     private Container container;
 
 //    @Autowired

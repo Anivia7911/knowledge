@@ -1,7 +1,7 @@
 package com.wch.file.controller;
 
 import com.wch.common.model.resp.RespResult;
-import com.wch.file.service.FileHandleService;
+import com.wch.file.service.FileService;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ import java.io.IOException;
 @RequestMapping("/file")
 public class FileController {
 
-    private FileHandleService fileHandleService;
+    private FileService fileService;
 
     @Autowired
     void setBean(
-            FileHandleService fileHandleService
+            FileService fileService
     ) {
-        this.fileHandleService = fileHandleService;
+        this.fileService = fileService;
     }
     /**
      * 文件上传
@@ -33,7 +33,7 @@ public class FileController {
      */
     @PostMapping(value = "upload")
     public RespResult upload(@RequestBody MultipartFile file) throws IOException {
-        fileHandleService.upload(file.getOriginalFilename(), file.getBytes());
+        fileService.upload(file.getOriginalFilename(), file.getBytes());
         return RespResult.success();
     }
 
@@ -44,7 +44,7 @@ public class FileController {
      */
     @GetMapping(value = "download")
     public void download(@RequestParam("name") String name, HttpServletResponse response) throws IOException {
-        byte[] download = fileHandleService.download(name);
+        byte[] download = fileService.download(name);
         ServletOutputStream os = response.getOutputStream();
         os.write(download);
         os.flush();
