@@ -11,6 +11,8 @@ create table file_header
     body_id_     varchar(50) null,
     name_        varchar(100) null
 );
+create index file_header_idx1 on file_header (body_id_);
+create index file_header_idx2 on file_header (modular_, modular_id_);
 
 create table file_header
 (
