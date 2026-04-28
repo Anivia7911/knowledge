@@ -4,17 +4,17 @@ spring:
   application:
     name: file-service
   datasource:
-    username: rag1
-    password: 123456789
-    url: jdbc:mysql://116.205.187.100:3306/rag?characterEncoding=utf8&useSSL=false
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: postgres
+    password: 123456
+    url: jdbc:postgresql://192.168.10.146:5432/postgres
+    driver-class-name: org.postgresql.Driver
   cloud:
     nacos:
       config:
         file-extension: yaml
-        server-addr: 116.205.187.100:8848
+        server-addr: 192.168.10.146:8848
       discovery:
-        server-addr: 116.205.187.100:8848
+        server-addr: 192.168.10.146:8848
   config:
     import:
       - optional:nacos:file-service.yaml

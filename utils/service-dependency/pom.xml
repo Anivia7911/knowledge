@@ -26,18 +26,21 @@
             <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
             <version>3.5.7</version>
         </dependency>
+
+        <!--      数据库      -->
+        <!--MySQL-->
 <!--        <dependency>-->
-<!--            <groupId>com.baomidou</groupId>-->
-<!--            <artifactId>mybatis-plus-jsqlparser</artifactId>-->
-<!--            <version>3.5.7</version>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <version>8.0.30</version>-->
+<!--            <scope>runtime</scope>-->
 <!--        </dependency>-->
 
-        <!--MySQL-->
+        <!--PostgreSql-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.30</version>
-            <scope>runtime</scope>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.1</version>
         </dependency>
 
         <!--Redis-->

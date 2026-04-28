@@ -1,0 +1,18 @@
+package com.wch.rag;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * @author: Jie Bugui
+ * @create: 2025-04-22 16:28
+ */
+@MapperScan()
+@SpringBootApplication()
+public class RagApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(RagApplication.class, args);
+    }
+}

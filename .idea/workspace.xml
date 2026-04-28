@@ -5,30 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1586a86f-c4bc-4311-a753-540ee5fff7ce" name="Changes" comment="build">
-      <change afterPath="$PROJECT_DIR$/api/es-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/es-api/src/main/java/com/wch/es/model/EsFileHeader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/mapper/FileHeaderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/model/po/FileHeaderPO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/service/FileHeaderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/file-service/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/common/src/main/java/com/wch/common/model/po/BasePO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/rag/src/main/java/com/wch/rag/RagApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/FileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/FileApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/conf/ContainerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/conf/ContainerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/controller/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/service/FileHandleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/file-service/src/main/java/com/wch/file/service/FileHandleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/file-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/file-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/common/src/main/java/com/wch/common/resp/RespCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/common/src/main/java/com/wch/common/model/resp/RespCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/common/src/main/java/com/wch/common/resp/RespResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/utils/common/src/main/java/com/wch/common/model/resp/RespResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/file-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/file-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/file-service/src/main/resources/bootstrap.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/service-dependency/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/service-dependency/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,6 +81,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.FileApplication.executor": "Debug",
     "Spring Boot.KnowledgeApplication.executor": "Debug",
     "git-widget-placeholder": "master",
@@ -109,14 +92,44 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.4427124",
-    "settings.editor.selected.configurable": "MavenSettings",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\project\java\knowledge\utils\service-dependency\src\main\java\com\wch" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.wch.rag" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="FileApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.FileApplication">
     <configuration name="FileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -129,6 +142,13 @@
     <configuration name="KnowledgeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="knowledge" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.wch.knowledge.KnowledgeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RagApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="rag" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wch.rag.RagApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -151,7 +171,8 @@
       <updated>1776840784465</updated>
       <workItem from="1776840785506" duration="8058000" />
       <workItem from="1776849488823" duration="357000" />
-      <workItem from="1776849872381" duration="6924000" />
+      <workItem from="1776849872381" duration="7171000" />
+      <workItem from="1777383347287" duration="4831000" />
     </task>
     <task id="LOCAL-00001" summary="build">
       <option name="closed" value="true" />
@@ -169,13 +190,30 @@
       <option name="project" value="LOCAL" />
       <updated>1776846869907</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="build">
+      <option name="closed" value="true" />
+      <created>1776857483688</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776857483688</updated>
+    </task>
+    <task id="LOCAL-00004" summary="build">
+      <option name="closed" value="true" />
+      <created>1776857638258</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776857638258</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="build" />
     <option name="LAST_COMMIT_MESSAGE" value="build" />
   </component>
