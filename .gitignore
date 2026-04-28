@@ -1,1 +1,54 @@
+# Eclipse project files
+.classpath
+.project
+.settings/
+test-output/
+
+# IntelliJ project files
 .idea/
+*.iws
+*.iml
+*.ipr
+
+# Mac
+.DS_Store
+
+# Others
+Temp/
+obj/
+classes/
+generated/
+bin/
+*.ldb
+_ReSharper*/
+*.eml
+out/
+*.user
+*.resx
+nbproject/
+target/
+build/
+build.xml
+Thumbs.db
+manifest.mf
+Out/
+*.lic
+Data/*Out*
+*_out.*
+/dist/
+
+#自定义
+application.pid
+/gateway/target
+/services/file-service/target
+/services/knowledge-service/target
+/services/preview-service/target
+/services/rag/target
+
+/.mvn/
+/.vscode/
+.trae_config.json
+/trajectories/
+*.py
+/.qoder/
+/damend/
