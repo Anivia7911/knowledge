@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1586a86f-c4bc-4311-a753-540ee5fff7ce" name="Changes" comment="build">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/rag/src/main/java/com/wch/rag/RagApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/knowledge-service/src/main/java/com/wch/knowledge/KnowledgeApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/preview-service/src/main/java/com/wch/preview/PreviewApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/preview-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/rag/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/file-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/file-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/file-service/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/service-dependency/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/utils/service-dependency/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,9 +82,11 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.FileApplication.executor": "Debug",
     "Spring Boot.KnowledgeApplication.executor": "Debug",
+    "Spring Boot.PreviewApplication.executor": "Debug",
+    "Spring Boot.RagApplication.executor": "Debug",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/project/java/knowledge/utils/service-dependency/src/main/java/com/wch",
+    "last_opened_file_path": "D:/project/java/knowledge/services/preview-service/src/main/resources",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "D:/project/java/knowledge/api/es-api/src/main/java/com/wch/Main.java",
     "project.structure.last.edited": "Modules",
@@ -104,9 +104,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\project\java\knowledge\services\preview-service\src\main\resources" />
+      <recent name="D:\project\java\knowledge\services\rag\src\main\resources" />
       <recent name="D:\project\java\knowledge\utils\service-dependency\src\main\java\com\wch" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.wch.knowledge" />
+      <recent name="com.wch.preview" />
       <recent name="com.wch.rag" />
     </key>
   </component>
@@ -125,13 +129,14 @@
           <value>
             <map>
               <entry key="FileApplication" value="STOPPED" />
+              <entry key="PreviewApplication" value="STOPPED" />
             </map>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.FileApplication">
+  <component name="RunManager" selected="Spring Boot.KnowledgeApplication">
     <configuration name="FileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="file-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.wch.file.FileApplication" />
@@ -139,9 +144,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="KnowledgeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="knowledge" />
+    <configuration name="KnowledgeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="knowledge-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.wch.knowledge.KnowledgeApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wch.knowledge.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PreviewApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="preview-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wch.preview.PreviewApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wch.preview.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -153,6 +177,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.KnowledgeApplication" />
+        <item itemvalue="Spring Boot.PreviewApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -172,7 +202,7 @@
       <workItem from="1776840785506" duration="8058000" />
       <workItem from="1776849488823" duration="357000" />
       <workItem from="1776849872381" duration="7171000" />
-      <workItem from="1777383347287" duration="4831000" />
+      <workItem from="1777383347287" duration="5167000" />
     </task>
     <task id="LOCAL-00001" summary="build">
       <option name="closed" value="true" />
@@ -206,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776857638258</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="build">
+      <option name="closed" value="true" />
+      <created>1777394143350</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1777394143350</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
