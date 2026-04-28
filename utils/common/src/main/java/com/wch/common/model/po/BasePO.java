@@ -13,7 +13,13 @@ import java.time.LocalDateTime;
 @Data
 public class BasePO implements Serializable {
     private Long id;
+
+    private String createUser;
+
     private LocalDateTime createDate;
+
+    private String updateUser;
+
     private LocalDateTime updateDate;
 
     @TableLogic
