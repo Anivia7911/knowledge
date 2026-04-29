@@ -1,29 +1,31 @@
 create table file_header
 (
-    id_          integer not null
+    id          bigint not null
         primary key,
-    create_user_ varchar(50),
-    create_date_ timestamp without time zone,
-    update_user_ varchar(50),
-    update_date_ timestamp without time zone,
-    modular_     varchar(50),
-    modular_id_  varchar(50),
-    body_id_     varchar(50),
-    name_        varchar(100)
+    create_user varchar(100),
+    create_date timestamp without time zone,
+    update_user varchar(100),
+    update_date timestamp without time zone,
+    deleted     int default 0,
+    modular     varchar(100),
+    modular_id  varchar(100),
+    body_id     bigint,
+    name        varchar(100)
 );
-create index file_header_idx1 on file_header (body_id_);
-create index file_header_idx2 on file_header (modular_, modular_id_);
+create index file_header_idx1 on file_header (body_id);
+create index file_header_idx2 on file_header (modular, modular_id);
 
 create table file_body
 (
-    id_          integer not null
+    id          bigint not null
         primary key,
-    create_user_ varchar(50),
-    create_date_ timestamp without time zone,
-    update_user_ varchar(50),
-    update_date_ timestamp without time zone,
-    size_        bigint,
-    type_        varchar(50),
-    scheme_      varchar(50),
-    version_     integer
+    create_user varchar(100),
+    create_date timestamp without time zone,
+    update_user varchar(100),
+    update_date timestamp without time zone,
+    deleted     int default 0,
+    size        bigint,
+    type        varchar(100),
+    scheme      varchar(100),
+    version     integer
 );

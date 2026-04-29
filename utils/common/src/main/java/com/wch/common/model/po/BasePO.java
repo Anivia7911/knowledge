@@ -1,5 +1,7 @@
 package com.wch.common.model.po;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
@@ -16,10 +18,12 @@ public class BasePO implements Serializable {
 
     private String createUser;
 
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDate;
 
     private String updateUser;
 
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateDate;
 
     @TableLogic

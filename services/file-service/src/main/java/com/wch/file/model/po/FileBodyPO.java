@@ -3,7 +3,6 @@ package com.wch.file.model.po;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wch.common.model.po.BasePO;
 import com.wch.common.trivial.enumdata.FileSchemeEnum;
-import com.wch.common.trivial.enumdata.FileTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,7 +23,7 @@ public class FileBodyPO extends BasePO {
     /*
      * 文件类型
      * */
-    private FileTypeEnum type;
+    private String type;
 
     /*
      * 文件协议

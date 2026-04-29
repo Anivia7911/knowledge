@@ -1,8 +1,14 @@
 package com.wch.file.service;
 
-import org.javaswift.joss.model.Container;
-import org.javaswift.joss.model.StoredObject;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.wch.file.model.po.FileBodyPO;
+
+import com.wch.file.model.po.FileHeaderPO;
+import com.wch.file.scheme.FileSchemeContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author: Jie Bugui
@@ -10,33 +16,35 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FileService {
-    private Container container;
+    private FileSchemeContext fileSchemeContext;
+    private FileHeaderService fileHeaderService;
+    private FileBodyService fileBodyService;
 
-//    @Autowired
-//    void setBean(
-//            Container container
-//    ) {
-//        this.container = container;
-//    }
 
-    /**
-     * 文件上传
-     */
-    public void upload(String filename, byte[] buffer) {
-        //获取容器
-        StoredObject object = container.getObject(filename);
-
-        //文件上传
-        object.uploadObject(buffer);
+    @Autowired
+    void setService(
+            FileSchemeContext fileSchemeContext,
+            FileHeaderService fileHeaderService,
+            FileBodyService fileBodyService
+    ) {
+        this.fileSchemeContext = fileSchemeContext;
+        this.fileHeaderService = fileHeaderService;
+        this.fileBodyService = fileBodyService;
     }
 
+    @Transactional(rollbackFor = Throwable.class)
+    public void upload(MultipartFile file) {
+        FileBodyPO fileBodyPO =  new FileBodyPO();
+        fileBodyPO.setSize(file.getSize());
+        fileBodyService.save(fileBodyPO);
 
-    /**
-     * 文件下载
-     */
-    public byte[] download(String filename) {
-        //获取容器
-        StoredObject object = container.getObject(filename);
-        return object.downloadObject();
+        FileHeaderPO fileHeaderPO = new FileHeaderPO();
+        fileHeaderPO.setName(file.getOriginalFilename());
+        fileHeaderPO.setBodyId(fileBodyPO.getId());
+        fileHeaderPO.setBody(fileBodyPO);
+        fileHeaderPO.setDeleted(0);
+
+
+        fileHeaderService.save(fileHeaderPO);
     }
 }

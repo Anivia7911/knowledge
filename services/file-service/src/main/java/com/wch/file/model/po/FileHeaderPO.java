@@ -29,7 +29,7 @@ public class FileHeaderPO extends BasePO {
     /*
      * 文件体
      * */
-    private String bodyId;
+    private Long bodyId;
     @TableField(exist = false)
     private FileBodyPO body;
 }

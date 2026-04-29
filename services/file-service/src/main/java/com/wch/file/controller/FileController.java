@@ -31,9 +31,9 @@ public class FileController {
      * @param file
      * @return
      */
-    @PostMapping(value = "upload")
+    @PostMapping(value = "/upload")
     public RespResult upload(@RequestBody MultipartFile file) throws IOException {
-        fileService.upload(file.getOriginalFilename(), file.getBytes());
+        fileService.upload(file);
         return RespResult.success();
     }
 
@@ -42,12 +42,12 @@ public class FileController {
      * @param name
      * @return
      */
-    @GetMapping(value = "download")
-    public void download(@RequestParam("name") String name, HttpServletResponse response) throws IOException {
-        byte[] download = fileService.download(name);
-        ServletOutputStream os = response.getOutputStream();
-        os.write(download);
-        os.flush();
-        os.close();
-    }
+//    @GetMapping(value = "download")
+//    public void download(@RequestParam("name") String name, HttpServletResponse response) throws IOException {
+//        byte[] download = fileService.download(name);
+//        ServletOutputStream os = response.getOutputStream();
+//        os.write(download);
+//        os.flush();
+//        os.close();
+//    }
 }
