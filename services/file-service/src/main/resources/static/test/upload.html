@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>大文件分片上传 - Knowledge系统</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/spark-md5/3.0.2/spark-md5.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background-color: #f5f7f9; color: #333; }
+        .upload-container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h2 { margin-top: 0; color: #1a73e8; border-bottom: 2px solid #e8f0fe; padding-bottom: 15px; }
+        .file-input-group { margin: 25px 0; }
+        input[type="file"] { display: block; width: 100%; padding: 10px; border: 1px dashed #ced4da; border-radius: 6px; cursor: pointer; }
+        input[type="file"]:hover { border-color: #1a73e8; background-color: #f8fbff; }
+        button { background: #1a73e8; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.2s; width: 100%; }
+        button:hover { background: #1557b0; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .progress-bar { width: 100%; background-color: #e9ecef; border-radius: 10px; margin-top: 25px; display: none; overflow: hidden; height: 20px; }
+        .progress-inner { width: 0%; height: 100%; background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%); transition: width 0.3s; text-align: center; color: white; font-size: 12px; line-height: 20px; font-weight: bold; }
+        #status { margin-top: 20px; font-size: 14px; padding: 10px; border-radius: 4px; }
+        .status-info { background: #e8f0fe; color: #1967d2; }
+        .status-error { background: #fce8e6; color: #c5221f; }
+        .status-success { background: #e6f4ea; color: #137333; }
+    </style>
+</head>
+<body>
+
+<div class="upload-container">
+    <h2>大文件分片上传</h2>
+    <div class="file-input-group">
+        <input type="file" id="fileInput">
+    </div>
+    <button id="uploadBtn">立即上传</button>
+
+    <div class="progress-bar" id="progressBar">
+        <div class="progress-inner" id="progressInner">0%</div>
+    </div>
+    <div id="status"></div>
+</div>
+
+<script>
+    const CHUNK_SIZE = 2 * 1024 * 1024; // 每片大小: 2MB (推荐大小)
+    const uploadBtn = document.getElementById('uploadBtn');
+    const fileInput = document.getElementById('fileInput');
+    const statusDiv = document.getElementById('status');
+    const progressInner = document.getElementById('progressInner');
+    const progressBar = document.getElementById('progressBar');
+
+    function updateStatus(msg, type = 'info') {
+        statusDiv.innerText = msg;
+        statusDiv.className = 'status-' + type;
+    }
+
+    function calculateMD5(file) {
+        return new Promise((resolve, reject) => {
+            const spark = new SparkMD5.ArrayBuffer();
+            const reader = new FileReader();
+            const sliceSize = 2 * 1024 * 1024; // 读取大文件时，每块 2MB
+            let currentSlice = 0;
+
+            reader.onload = e => {
+                spark.append(e.target.result);
+                currentSlice++;
+                if (currentSlice * sliceSize < file.size) {
+                    loadNext();
+                } else {
+                    resolve(spark.end());
+                }
+            };
+
+            reader.onerror = () => reject('文件读取失败');
+
+            function loadNext() {
+                const start = currentSlice * sliceSize;
+                const end = Math.min(start + sliceSize, file.size);
+                reader.readAsArrayBuffer(file.slice(start, end));
+            }
+
+            loadNext();
+        });
+    }
+
+    function uploadChunk(formData) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            // 使用相对路径，避免跨域
+            xhr.open('POST', '/file/upload/chunk', true);
+            
+            xhr.onload = () => {
+                try {
+                    const resp = JSON.parse(xhr.responseText);
+                    if (xhr.status === 200 && (resp.code === 200 || resp.success)) {
+                        resolve(resp);
+                    } else {
+                        reject(resp.message || '服务器返回异常');
+                    }
+                } catch (e) {
+                    reject('解析服务器响应失败');
+                }
+            };
+            xhr.onerror = () => reject('网络请求失败');
+            xhr.send(formData);
+        });
+    }
+
+    function checkUpload(md5) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `/file/upload/check?md5=${md5}`, true);
+            xhr.onload = () => {
+                try {
+                    const resp = JSON.parse(xhr.responseText);
+                    resolve(resp.data); // 返回 true 表示已存在
+                } catch (e) {
+                    reject('解析校验响应失败');
+                }
+            };
+            xhr.onerror = () => reject('校验请求失败');
+            xhr.send();
+        });
+    }
+
+    uploadBtn.onclick = async () => {
+        const file = fileInput.files[0];
+        if (!file) {
+            updateStatus('请先选择一个文件', 'error');
+            return;
+        }
+
+        uploadBtn.disabled = true;
+        updateStatus('正在计算文件 MD5...', 'info');
+        let md5;
+        try {
+            md5 = await calculateMD5(file);
+        } catch (e) {
+            updateStatus(e, 'error');
+            uploadBtn.disabled = false;
+            return;
+        }
+
+        updateStatus('正在校验文件是否已存在...', 'info');
+        try {
+            const isExist = await checkUpload(md5);
+            if (isExist) {
+                updateStatus('秒传成功！文件已存在于服务器。', 'success');
+                progressBar.style.display = 'block';
+                progressInner.style.width = '100%';
+                progressInner.innerText = '100% (秒传)';
+                uploadBtn.disabled = false;
+                return;
+            }
+        } catch (e) {
+            console.warn('校验失败，转为普通分片上传:', e);
+        }
+
+        const fileSize = file.size;
+        const totalChunks = Math.ceil(fileSize / CHUNK_SIZE);
+        const fileName = file.name;
+
+        progressBar.style.display = 'block';
+        updateStatus('准备上传...', 'info');
+
+        let uploadedBytes = 0;
+        const CONCURRENCY = 3; // 并发数限制
+        let activeRequests = 0;
+        let chunkIndex = 0;
+
+        return new Promise((resolve, reject) => {
+            const next = async () => {
+                if (chunkIndex >= totalChunks) {
+                    if (activeRequests === 0) {
+                        updateStatus('文件上传并合并成功！', 'success');
+                        uploadBtn.disabled = false;
+                        resolve();
+                    }
+                    return;
+                }
+
+                while (activeRequests < CONCURRENCY && chunkIndex < totalChunks) {
+                    const currentIdx = chunkIndex++;
+                    activeRequests++;
+
+                    const start = currentIdx * CHUNK_SIZE;
+                    const end = Math.min(start + CHUNK_SIZE, fileSize);
+                    const chunkBlob = file.slice(start, end);
+                    const currentChunkSize = end - start;
+
+                    const formData = new FormData();
+                    formData.append('file', chunkBlob);
+                    formData.append('md5', md5);
+                    formData.append('chunk', currentIdx);
+                    formData.append('chucks', totalChunks);
+                    formData.append('name', fileName);
+
+                    uploadChunk(formData).then(() => {
+                        activeRequests--;
+                        uploadedBytes += currentChunkSize;
+                        
+                        // 动态计算已上传大小 (KB/MB)
+                        const uploadedDisplay = (uploadedBytes / 1024).toFixed(2);
+                        const totalDisplay = (fileSize / 1024).toFixed(2);
+                        const percent = Math.min(Math.floor((uploadedBytes / fileSize) * 100), 100);
+                        
+                        progressInner.style.width = percent + '%';
+                        progressInner.innerText = `${percent}% (${uploadedDisplay}KB / ${totalDisplay}KB)`;
+                        updateStatus(`正在上传: ${uploadedDisplay}KB / ${totalDisplay}KB`, 'info');
+                        
+                        next(); // 完成一个，立即执行下一个
+                    }).catch(error => {
+                        updateStatus(`上传失败: ${error}`, 'error');
+                        uploadBtn.disabled = false;
+                        reject(error);
+                    });
+                }
+            };
+
+            next();
+        });
+    };
+
+    function uploadChunk(formData) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            // 使用相对路径，避免跨域
+            xhr.open('POST', '/file/upload/chunk', true);
+            
+            xhr.onload = () => {
+                try {
+                    const resp = JSON.parse(xhr.responseText);
+                    if (xhr.status === 200 && (resp.code === 200 || resp.success)) {
+                        resolve(resp);
+                    } else {
+                        reject(resp.message || '服务器返回异常');
+                    }
+                } catch (e) {
+                    reject('解析服务器响应失败');
+                }
+            };
+            xhr.onerror = () => reject('网络请求失败');
+            xhr.send(formData);
+        });
+    }
+</script>
+
+</body>
+</html>
