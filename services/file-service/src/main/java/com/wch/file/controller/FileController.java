@@ -33,7 +33,7 @@ public class FileController {
      * 文件上传
      */
     @PostMapping(value = "/upload")
-    public RespResult upload(@RequestBody MultipartFile file) throws IOException {
+    public RespResult upload(@RequestParam("file") MultipartFile file) throws IOException {
         fileService.upload(file);
         return RespResult.success();
     }
@@ -42,8 +42,13 @@ public class FileController {
      * 文件分片上传
      */
     @PostMapping(value = "/upload/chunk")
-    public RespResult uploadChunk(HttpServletRequest request) throws IOException {
-        fileService.uploadChunk(request);
+    public RespResult uploadChunk(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("chunk") Integer chunk,
+            @RequestParam("chucks") Integer chucks,
+            @RequestParam("name") String name
+    ) throws IOException {
+        fileService.uploadChunk(file, chunk, chucks, name);
         return RespResult.success();
     }
 
