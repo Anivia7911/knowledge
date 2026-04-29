@@ -3,10 +3,13 @@ package com.wch.file.controller;
 import com.wch.common.model.resp.RespResult;
 import com.wch.file.service.FileService;
 import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.Cleanup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.View;
 
 import java.io.IOException;
 
@@ -28,8 +31,6 @@ public class FileController {
     }
     /**
      * 文件上传
-     * @param file
-     * @return
      */
     @PostMapping(value = "/upload")
     public RespResult upload(@RequestBody MultipartFile file) throws IOException {
@@ -38,16 +39,19 @@ public class FileController {
     }
 
     /**
-     * 文件下载
-     * @param name
-     * @return
+     * 文件分片上传
      */
-//    @GetMapping(value = "download")
-//    public void download(@RequestParam("name") String name, HttpServletResponse response) throws IOException {
-//        byte[] download = fileService.download(name);
-//        ServletOutputStream os = response.getOutputStream();
-//        os.write(download);
-//        os.flush();
-//        os.close();
-//    }
+    @PostMapping(value = "/upload/chunk")
+    public RespResult uploadChunk(HttpServletRequest request) throws IOException {
+        fileService.uploadChunk(request);
+        return RespResult.success();
+    }
+
+    /**
+     * 文件下载
+     */
+    @GetMapping(value = "download")
+    public View download(@RequestParam("id") String id) throws IOException {
+        return fileService.download(id);
+    }
 }

@@ -148,10 +148,7 @@ public enum FileTypeEnum {
      */
     MID("MID", "4D546864"),
 
-    /**
-     * OTHER
-     */
-    OTHER("OTHER", "");
+    ;
 
     private final String fileTypeName;
     private final String magicNumberCode;

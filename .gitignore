@@ -44,6 +44,7 @@ application.pid
 /services/knowledge-service/target
 /services/preview-service/target
 /services/rag/target
+temp/
 
 /.mvn/
 /.vscode/
