@@ -1,5 +1,6 @@
 package com.wch.file.controller;
 
+import com.wch.common.model.resp.RespCode;
 import com.wch.common.model.resp.RespResult;
 import com.wch.file.service.FileService;
 import jakarta.servlet.ServletOutputStream;
@@ -39,16 +40,26 @@ public class FileController {
     }
 
     /**
+     * 校验文件是否已存在（秒传）
+     */
+    @GetMapping(value = "/upload/check")
+    public RespResult checkMD5(@RequestParam("md5") String md5) {
+        boolean exists = fileService.checkMD5(md5);
+        return RespResult.success(exists);
+    }
+
+    /**
      * 文件分片上传
      */
     @PostMapping(value = "/upload/chunk")
     public RespResult uploadChunk(
             @RequestParam("file") MultipartFile file,
+            @RequestParam("md5") String md5,
             @RequestParam("chunk") Integer chunk,
             @RequestParam("chucks") Integer chucks,
             @RequestParam("name") String name
     ) throws IOException {
-        fileService.uploadChunk(file, chunk, chucks, name);
+        fileService.uploadChunk(file, md5, chunk, chucks, name);
         return RespResult.success();
     }
 

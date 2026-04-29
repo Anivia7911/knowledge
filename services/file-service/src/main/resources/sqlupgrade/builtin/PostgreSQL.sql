@@ -29,3 +29,5 @@ create table file_body
     scheme      varchar(100),
     version     integer
 );
+
+alter table file_body add column md5 varchar(100);

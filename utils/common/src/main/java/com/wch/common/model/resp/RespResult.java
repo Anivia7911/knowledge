@@ -44,6 +44,10 @@ public class RespResult<T> implements Serializable {
         return new RespResult(null, RespCode.SUCCESS);
     }
 
+    public static RespResult success(Object o) {
+        return new RespResult(o, RespCode.SUCCESS);
+    }
+
     public static RespResult error() {
         return new RespResult(null, RespCode.ERROR);
     }

@@ -21,6 +21,11 @@ public class FileBodyPO extends BasePO {
     private long size;
 
     /*
+     * MD5
+     * */
+    private String md5;
+
+    /*
      * 文件类型
      * */
     private String type;
