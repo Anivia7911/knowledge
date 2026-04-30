@@ -1,26 +1,24 @@
 package com.wch.common.model.resp;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
  * @author: Jie Bugui
  * @create: 2025-04-22 15:23
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class RespResult<T> implements Serializable {
-    private T data;
 
     private Integer code;
 
     private String message;
 
-    public RespResult() {
-    }
-
-    public RespResult(T data, Integer code, String message) {
-        this.data = data;
-        this.code = code;
-        this.message = message;
-    }
+    private T data;
 
     public RespResult(T data, RespCode respCode) {
         this.data = data;
@@ -28,31 +26,19 @@ public class RespResult<T> implements Serializable {
         this.message = respCode.getMessage();
     }
 
-    public T getData() {
-        return data;
+    public static <T> RespResult<T> success() {
+        return new RespResult<>(null, RespCode.SUCCESS);
     }
 
-    public String getMessage() {
-        return message;
+    public static <T> RespResult<T> success(T data) {
+        return new RespResult<>(data, RespCode.SUCCESS);
     }
 
-    public Integer getCode() {
-        return code;
+    public static <T> RespResult<T> error() {
+        return new RespResult<>(null, RespCode.ERROR);
     }
 
-    public static RespResult success() {
-        return new RespResult(null, RespCode.SUCCESS);
-    }
-
-    public static RespResult success(Object o) {
-        return new RespResult(o, RespCode.SUCCESS);
-    }
-
-    public static RespResult error() {
-        return new RespResult(null, RespCode.ERROR);
-    }
-
-    public static RespResult fail() {
-        return new RespResult(null, RespCode.BAD_REQUEST);
+    public static <T> RespResult<T> fail() {
+        return new RespResult<>(null, RespCode.BAD_REQUEST);
     }
 }

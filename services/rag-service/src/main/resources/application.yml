@@ -1,0 +1,36 @@
+server:
+  port: 8083
+spring:
+  ai:
+    google:
+      gemini:
+        api-key: ${GOOGLE_API_KEY}
+        base-url: https://generativelanguage.googleapis.com/
+  #    openai:
+  #      api-key: ${MY_API_KEY}
+  #      base-url: https://generativelanguage.googleapis.com/
+  #      chat:
+  #        completions-path: /chat/completions
+  #        options:
+  #          model: gemini-2.0-flash-exp
+  application:
+    name: rag-service
+  datasource:
+    username: postgres
+    password: 123456
+    url: jdbc:postgresql://192.168.10.146:5432/postgres
+    driver-class-name: org.postgresql.Driver
+  cloud:
+    nacos:
+      config:
+        enabled: false
+        refresh-enabled: false
+        file-extension: yaml
+        server-addr: 192.168.10.146:8848
+      discovery:
+        enabled: false
+        instance-enabled: false
+        server-addr: 192.168.10.146:8848
+  config:
+    import:
+      - optional:nacos:rag-service.yaml

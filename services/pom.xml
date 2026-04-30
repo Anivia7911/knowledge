@@ -15,7 +15,7 @@
         <module>file-service</module>
         <module>knowledge-service</module>
         <module>preview-service</module>
-        <module>rag</module>
+        <module>rag-service</module>
     </modules>
 
     <dependencies>

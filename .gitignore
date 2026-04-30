@@ -41,9 +41,13 @@ Data/*Out*
 application.pid
 /gateway/target
 /services/file-service/target
+/services/file-service/src/test
 /services/knowledge-service/target
+/services/knowledge-service/src/test
 /services/preview-service/target
-/services/rag/target
+/services/preview-service/src/test
+/services/rag-service/target
+/services/rag-service/src/test
 temp/
 
 /.mvn/
