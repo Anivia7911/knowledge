@@ -1,3 +1,4 @@
+/*文件头*/
 create table file_header
 (
     id_          bigint not null
@@ -14,6 +15,7 @@ create table file_header
 create index file_header_idx1 on file_header (body_id_);
 create index file_header_idx2 on file_header (modular_, modular_id_);
 
+/*文件体*/
 create table file_body
 (
     id_          bigint not null
@@ -27,3 +29,6 @@ create table file_body
     scheme_      varchar(100) null,
     version_     integer null
 );
+
+alter table file_body
+    add column md5 varchar(100);
