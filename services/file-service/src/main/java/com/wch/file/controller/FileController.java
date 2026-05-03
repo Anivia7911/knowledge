@@ -1,12 +1,7 @@
 package com.wch.file.controller;
 
-import com.wch.common.model.resp.RespCode;
 import com.wch.common.model.resp.RespResult;
 import com.wch.file.service.FileService;
-import jakarta.servlet.ServletOutputStream;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.Cleanup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,7 +29,7 @@ public class FileController {
      * 文件上传
      */
     @PostMapping(value = "/upload")
-    public RespResult upload(@RequestParam("file") MultipartFile file) throws IOException {
+    public RespResult<Void> upload(@RequestParam("file") MultipartFile file) throws IOException {
         fileService.upload(file);
         return RespResult.success();
     }
@@ -43,7 +38,7 @@ public class FileController {
      * 校验文件是否已存在（秒传）
      */
     @GetMapping(value = "/upload/check")
-    public RespResult checkMD5(@RequestParam("md5") String md5) {
+    public RespResult<Boolean> checkMD5(@RequestParam("md5") String md5) {
         boolean exists = fileService.checkMD5(md5);
         return RespResult.success(exists);
     }
@@ -52,7 +47,7 @@ public class FileController {
      * 文件分片上传
      */
     @PostMapping(value = "/upload/chunk")
-    public RespResult uploadChunk(
+    public RespResult<Void> uploadChunk(
             @RequestParam("file") MultipartFile file,
             @RequestParam("md5") String md5,
             @RequestParam("chunk") Integer chunk,

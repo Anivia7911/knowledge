@@ -2,17 +2,9 @@ server:
   port: 8083
 spring:
   ai:
-    google:
-      gemini:
-        api-key: ${GOOGLE_API_KEY}
-        base-url: https://generativelanguage.googleapis.com/
-  #    openai:
-  #      api-key: ${MY_API_KEY}
-  #      base-url: https://generativelanguage.googleapis.com/
-  #      chat:
-  #        completions-path: /chat/completions
-  #        options:
-  #          model: gemini-2.0-flash-exp
+    openai:
+      api-key: ${ZHIPU_AI_KEY}
+      base_url: https://open.bigmodel.cn/api/paas/v4/chat/completions
   application:
     name: rag-service
   datasource:

@@ -8,6 +8,7 @@ import com.wch.common.model.resp.RespPageResult;
 import com.wch.rag.mapper.AiModelMapper;
 import com.wch.rag.model.po.AiModelPO;
 import com.wch.rag.model.req.AiModelQuery;
+import com.wch.rag.trivial.enumdata.ProviderType;
 import org.springframework.stereotype.Service;
 
 /**
