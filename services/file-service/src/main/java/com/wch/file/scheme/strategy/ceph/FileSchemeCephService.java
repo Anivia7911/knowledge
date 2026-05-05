@@ -5,6 +5,7 @@ import org.javaswift.joss.model.Container;
 import org.javaswift.joss.model.StoredObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author: Jie Bugui
@@ -41,5 +42,10 @@ public class FileSchemeCephService implements FileSchemeStrategy {
         //获取容器
         StoredObject object = container.getObject(filename);
         return object.downloadObject();
+    }
+
+    @Override
+    public void saveChunk(MultipartFile file, String md5, Integer chunk, Integer chunks, String name) throws Exception {
+
     }
 }

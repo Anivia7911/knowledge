@@ -1,4 +1,4 @@
-package com.wch.common.mybatisplus;
+package com.wch.mybatisplus.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
