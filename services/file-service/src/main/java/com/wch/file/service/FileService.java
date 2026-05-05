@@ -70,7 +70,7 @@ public class FileService {
             FileSchemeStrategy fileSchemeService = fileSchemeContext.getFileSchemeStrategy(setting.getScheme());
             fileSchemeService.saveChunk(file, md5, chunk, chunks, name);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             throw new RuntimeException("分片上传并处理失败", e);
         }
     }

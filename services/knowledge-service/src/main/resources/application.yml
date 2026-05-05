@@ -8,6 +8,11 @@ spring:
     password: 123456
     url: jdbc:postgresql://192.168.10.146:5432/postgres
     driver-class-name: org.postgresql.Driver
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     nacos:
       config:
