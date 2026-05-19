@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author: Jie Bugui
  * @create: 2025-04-22 16:28
  */
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.wch")
 @MapperScan()
 @SpringBootApplication()
 public class KnowledgeApplication {

@@ -21,13 +21,13 @@ import org.springframework.lang.Nullable;
 @Configuration
 @ConfigurationProperties("com.wch.rabbit-mq")
 public class RabbitMqConfig {
-    @Value("@{basic.queue.name}")
+    @Value("${basic.queue.name:}")
     private String basicQueueName;
 
-    @Value("@{basic.exchange.name}")
+    @Value("${basic.exchange.name:}")
     private String basicExchangeName;
 
-    @Value("@{basic.routing.key}")
+    @Value("${basic.routing.key:}")
     private String basicRoutingKey;
 
     private final CachingConnectionFactory connectionFactory;

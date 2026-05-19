@@ -12,7 +12,6 @@
     <artifactId>api</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>es-api</module>
         <module>file-api</module>
         <module>knowledge-api</module>
         <module>rag-api</module>

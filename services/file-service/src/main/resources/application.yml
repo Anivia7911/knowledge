@@ -15,14 +15,14 @@ spring:
   cloud:
     nacos:
       config:
-        enabled: false
-        refresh-enabled: false
+        enabled: true
+        refresh-enabled: true
         file-extension: yaml
-        server-addr: 192.168.10.146:8848
+        server-addr: 127.0.0.1:8848
       discovery:
-        enabled: false
-        instance-enabled: false
-        server-addr: 192.168.10.146:8848
+        enabled: true
+        instance-enabled: true
+        server-addr: 127.0.0.1:8848
   config:
     import:
       - optional:nacos:file-service.yaml

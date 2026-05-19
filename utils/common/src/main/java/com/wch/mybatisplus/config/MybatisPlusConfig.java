@@ -18,11 +18,11 @@ import org.springframework.context.annotation.Configuration;
 @Data
 public class MybatisPlusConfig {
 
-    @Value("${page.db-type}")
-    private DbType dbType = DbType.POSTGRE_SQL;
+    @Value("${page.db-type:POSTGRE_SQL}")
+    private DbType dbType;
 
-    @Value("${page.max-limit}")
-    private Long maxLimit = 1000L;
+    @Value("${page.max-limit:1000}")
+    private Long maxLimit;
 
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
