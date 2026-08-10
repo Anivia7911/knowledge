@@ -1,4 +1,0 @@
-com.wch.mybatisplus.config.MybatisPlusConfig
-com.wch.redis.config.RedisConfig
-#com.wch.rabbitmq.config.RabbitMqConfig
-#com.wch.rabbitmq.publisher.BasicPublisher
