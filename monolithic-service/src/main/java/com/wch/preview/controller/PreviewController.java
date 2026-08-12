@@ -57,7 +57,9 @@ public class PreviewController {
         if (body != null) {
             fileInfo.put("size", body.getSize());
             fileInfo.put("type", body.getType());
-            fileInfo.put("path", body.getPath());
+            // 解析为完整路径，避免前端/文本预览使用相对路径时报错
+            String resolvedPath = fileService.resolveFilePath(body.getPath());
+            fileInfo.put("path", resolvedPath);
         }
 
         Map<String, Object> result = new HashMap<>(fileInfo);
@@ -114,7 +116,8 @@ public class PreviewController {
         }
         try {
             String cacheKey = body.getMd5() != null ? body.getMd5() : String.valueOf(body.getId());
-            File pdf = previewConvertService.convertToPdf(body.getPath(), cacheKey);
+            String resolvedPath = fileService.resolveFilePath(body.getPath());
+            File pdf = previewConvertService.convertToPdf(resolvedPath, cacheKey);
             Resource resource = new FileSystemResource(pdf);
             String pdfName = (header.getName() == null ? "preview" : header.getName().replaceAll("\\.[^.]+$", "")) + ".pdf";
             return ResponseEntity.ok()

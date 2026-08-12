@@ -39,12 +39,6 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-        <!-- RabbitMQ -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-
         <!-- Hutool -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -63,11 +57,17 @@
             <artifactId>langchain4j-open-ai</artifactId>
             <version>1.8.0</version>
         </dependency>
-        <!-- 本地中文嵌入模型 bge-small-zh-v15（离线运行，无需外部API） -->
+        <!-- pgvector 向量数据库 -->
         <dependency>
             <groupId>dev.langchain4j</groupId>
-            <artifactId>langchain4j-embeddings-bge-small-zh-v15</artifactId>
-            <version>1.0.0-beta5</version>
+            <artifactId>langchain4j-pgvector</artifactId>
+            <version>1.8.0-beta15</version>
+        </dependency>
+        <!-- PostgreSQL JDBC -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
         </dependency>
 
         <!-- 文档解析：PDF / Office -->
@@ -89,21 +89,6 @@
 
         <!-- 文件存储相关 -->
         <dependency>
-            <groupId>com.ceph</groupId>
-            <artifactId>rados</artifactId>
-            <version>0.6.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ceph</groupId>
-            <artifactId>libcephfs</artifactId>
-            <version>0.80.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.javaswift</groupId>
-            <artifactId>joss</artifactId>
-            <version>0.10.2</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-fileupload2-jakarta</artifactId>
             <version>2.0.0-M1</version>
@@ -112,16 +97,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.16.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.4.10</version>
         </dependency>
     </dependencies>
 

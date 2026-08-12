@@ -199,6 +199,7 @@ public class AiChatService {
 
     /**
      * 构建系统提示：选择了知识库时，先检索相关分片作为参考资料（RAG）
+     * 使用查询改写 + 多路检索合并，提高召回率
      */
     private String buildSystemPrompt(String question, List<Long> knowledgeBaseIds) {
         String base = "你是一个知识库助手，请根据用户的问题提供准确、有帮助的回答。";
@@ -206,12 +207,16 @@ public class AiChatService {
             return base;
         }
         try {
-            List<RagVectorService.Chunk> chunks = ragVectorService.search(knowledgeBaseIds, question, 5);
+            // 查询改写：生成更适合检索的查询语句
+            String rewrittenQuery = rewriteQuery(question);
+
+            // 混合检索：原始查询 + 改写查询，合并去重
+            List<RagVectorService.Chunk> chunks = ragVectorService.hybridSearch(knowledgeBaseIds, question, rewrittenQuery, 8);
             if (chunks.isEmpty()) {
                 return base + "\n当前知识库中没有检索到与问题相关的内容，请如实告知用户。";
             }
             StringBuilder sb = new StringBuilder();
-            sb.append("你是一个知识库助手。请优先依据下面的参考资料回答用户问题；如果参考资料中没有相关内容，请如实告知。回答时不要提及“参考资料”的存在。\n\n参考资料：\n");
+            sb.append("你是一个知识库助手。请优先依据下面的参考资料回答用户问题；如果参考资料中没有相关内容，请如实告知。回答时不要提及'参考资料'的存在。\n\n参考资料：\n");
             for (int i = 0; i < chunks.size(); i++) {
                 RagVectorService.Chunk chunk = chunks.get(i);
                 sb.append("[").append(i + 1).append("]");
@@ -225,5 +230,28 @@ public class AiChatService {
             log.warn("RAG检索失败，降级为普通对话: {}", e.getMessage());
             return base;
         }
+    }
+
+    /**
+     * 查询改写：用 LLM 将用户原始问题改写为更适合检索的查询语句
+     */
+    private String rewriteQuery(String question) {
+        try {
+            if (defaultChatModel == null) {
+                return question;
+            }
+            String prompt = "请将以下用户问题改写为2个更适合知识库检索的查询语句，每行一个，只输出改写结果，不要输出其他内容。\n\n用户问题：" + question;
+            var response = defaultChatModel.chat(UserMessage.from(prompt));
+            String rewritten = response.aiMessage().text();
+            if (rewritten != null && !rewritten.isBlank()) {
+                String[] lines = rewritten.split("\n");
+                if (lines.length > 0) {
+                    return lines[0].trim();
+                }
+            }
+        } catch (Exception e) {
+            log.warn("查询改写失败，使用原始查询: {}", e.getMessage());
+        }
+        return question;
     }
 }

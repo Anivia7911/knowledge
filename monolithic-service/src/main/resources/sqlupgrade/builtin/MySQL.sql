@@ -64,10 +64,16 @@ create table if not exists knowledge_document
     file_id           bigint,
     file_name         varchar(200),
     file_type         varchar(100),
-    status            int default 0
+    status            int default 0,
+    progress_current  int default 0 comment '向量化当前进度（已完成分片数）',
+    progress_total    int default 0 comment '向量化总分片数'
 ) engine=innodb default charset=utf8mb4;
 create index knowledge_document_idx1 on knowledge_document (knowledge_base_id);
 create index knowledge_document_idx2 on knowledge_document (file_id);
+
+-- 已有表补充进度字段（新建表已在上面包含）
+alter table knowledge_document add column progress_current int default 0 comment '向量化当前进度（已完成分片数）';
+alter table knowledge_document add column progress_total int default 0 comment '向量化总分片数';
 
 /*AI模型*/
 create table if not exists ai_model

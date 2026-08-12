@@ -22,25 +22,45 @@ public class RagIngestService {
 
     @Async("ragExecutor")
     public void ingestAsync(Long knowledgeBaseId, Long documentId, Long fileId, String fileName) {
-        updateStatus(documentId, 1);
+        updateStatus(documentId, 1, 0, 0);
         try {
             String text = documentParseService.parseByFileId(fileId);
-            ragVectorService.ingestText(knowledgeBaseId, documentId, fileName, text);
-            updateStatus(documentId, 2);
+            ragVectorService.ingestText(knowledgeBaseId, documentId, fileName, text, (current, total) -> {
+                // 每批次完成后更新进度
+                updateProgress(documentId, current, total);
+            });
+            // 完成时设置进度为满分
+            updateStatus(documentId, 2, 0, 0);
         } catch (Exception e) {
             log.error("知识库[{}] 文档[{}] 向量化失败: {}", knowledgeBaseId, documentId, e.getMessage());
-            updateStatus(documentId, 3);
+            updateStatus(documentId, 3, 0, 0);
         }
     }
 
-    private void updateStatus(Long documentId, int status) {
+    private void updateStatus(Long documentId, int status, int progressCurrent, int progressTotal) {
         try {
             KnowledgeDocumentPO update = new KnowledgeDocumentPO();
             update.setId(documentId);
             update.setStatus(status);
+            if (progressTotal > 0) {
+                update.setProgressCurrent(progressCurrent);
+                update.setProgressTotal(progressTotal);
+            }
             knowledgeDocumentService.updateById(update);
         } catch (Exception e) {
             log.warn("更新文档状态失败: {}", e.getMessage());
+        }
+    }
+
+    private void updateProgress(Long documentId, int current, int total) {
+        try {
+            KnowledgeDocumentPO update = new KnowledgeDocumentPO();
+            update.setId(documentId);
+            update.setProgressCurrent(current);
+            update.setProgressTotal(total);
+            knowledgeDocumentService.updateById(update);
+        } catch (Exception e) {
+            log.warn("更新文档进度失败: {}", e.getMessage());
         }
     }
 }

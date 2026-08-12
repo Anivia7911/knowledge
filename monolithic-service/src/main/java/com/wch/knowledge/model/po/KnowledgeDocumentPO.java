@@ -37,4 +37,14 @@ public class KnowledgeDocumentPO extends BasePO {
      * 文档状态：0-待处理 1-处理中 2-已完成 3-处理失败
      */
     private Integer status;
+
+    /**
+     * 向量化当前进度（已完成分片数）
+     */
+    private Integer progressCurrent;
+
+    /**
+     * 向量化总分片数
+     */
+    private Integer progressTotal;
 }

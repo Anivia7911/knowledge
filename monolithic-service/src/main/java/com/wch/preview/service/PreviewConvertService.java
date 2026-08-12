@@ -97,9 +97,14 @@ public class PreviewConvertService {
         Path workFile = workDir.resolve("source." + ext);
         Files.copy(source.toPath(), workFile, StandardCopyOption.REPLACE_EXISTING);
 
+        // 为每次转换创建独立的用户配置目录，避免与已有 LibreOffice 实例冲突
+        Path userInstallDir = Files.createTempDirectory("lo-profile-");
+        String userInstallUrl = "file://" + userInstallDir.toAbsolutePath();
+
         try {
             ProcessBuilder pb = new ProcessBuilder(
                     soffice.getAbsolutePath(),
+                    "-env:UserInstallation=" + userInstallUrl,
                     "--headless", "--norestore", "--invisible",
                     "--convert-to", "pdf",
                     "--outdir", workDir.toString(),
@@ -127,16 +132,21 @@ public class PreviewConvertService {
             Files.move(tmpTarget, cached.toPath(), StandardCopyOption.REPLACE_EXISTING);
             log.info("Office文档转PDF完成: {} -> {}", sourcePath, cached.getAbsolutePath());
         } finally {
-            // 清理临时工作目录
-            try (var stream = Files.walk(workDir)) {
-                stream.sorted((a, b) -> b.compareTo(a)).forEach(p -> {
-                    try {
-                        Files.deleteIfExists(p);
-                    } catch (Exception ignore) {
-                    }
-                });
-            } catch (Exception ignore) {
-            }
+            // 清理临时工作目录和用户配置目录
+            cleanupDirectory(workDir);
+            cleanupDirectory(userInstallDir);
+        }
+    }
+
+    private void cleanupDirectory(Path dir) {
+        try (var stream = Files.walk(dir)) {
+            stream.sorted((a, b) -> b.compareTo(a)).forEach(p -> {
+                try {
+                    Files.deleteIfExists(p);
+                } catch (Exception ignore) {
+                }
+            });
+        } catch (Exception ignore) {
         }
     }
 

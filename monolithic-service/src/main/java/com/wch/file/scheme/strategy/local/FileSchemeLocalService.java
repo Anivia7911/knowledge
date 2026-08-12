@@ -151,7 +151,8 @@ public class FileSchemeLocalService implements FileSchemeStrategy {
         fileBodyPO.setMd5(md5);
         fileBodyPO.setType(FileUtil.getType(finalFile));
         fileBodyPO.setScheme(FileSchemeEnum.valueOf(setting.getScheme()));
-        fileBodyPO.setPath(finalFile.getAbsolutePath());
+        // 存储相对路径（仅文件名），避免环境变更导致路径失效
+        fileBodyPO.setPath(finalFile.getName());
         fileBodyService.save(fileBodyPO);
 
         FileHeaderPO fileHeaderPO = new FileHeaderPO();

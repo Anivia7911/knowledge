@@ -61,7 +61,8 @@ public class DocumentParseService {
             throw new RuntimeException("文件内容不存在（可能是历史脏数据）");
         }
         String type = body.getType() == null ? extOf(header.getName()) : body.getType().toLowerCase();
-        return parse(body.getPath(), type);
+        String resolvedPath = fileService.resolveFilePath(body.getPath());
+        return parse(resolvedPath, type);
     }
 
     /**

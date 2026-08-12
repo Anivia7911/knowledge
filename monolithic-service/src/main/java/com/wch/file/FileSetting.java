@@ -27,5 +27,5 @@ public class FileSetting {
     /**
      * 文件临时上传目录
      */
-    private String tempUploadPath = "D:\\project\\java\\knowledge\\temp";
+    private String tempUploadPath = "/tmp/knowledge/upload";
 }

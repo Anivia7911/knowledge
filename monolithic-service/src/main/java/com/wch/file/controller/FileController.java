@@ -123,7 +123,7 @@ public class FileController {
         if (body != null) {
             info.put("size", body.getSize());
             info.put("type", body.getType());
-            info.put("path", body.getPath());
+            info.put("path", fileService.resolveFilePath(body.getPath()));
         }
         return RespResult.success(info);
     }

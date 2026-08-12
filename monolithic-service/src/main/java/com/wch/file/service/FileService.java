@@ -23,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -73,11 +75,12 @@ public class FileService {
         // 文件体已存在则直接复用（秒传）
         FileBodyPO fileBodyPO = fileBodyService.lambdaQuery().eq(FileBodyPO::getMd5, md5).one();
         if (fileBodyPO == null) {
+            String storedName = md5 + "_" + fileName;
             File dir = new File(setting.getTempUploadPath());
             if (!dir.exists() && !dir.mkdirs()) {
                 throw new RuntimeException("创建上传目录失败: " + dir.getAbsolutePath());
             }
-            File dest = new File(dir, md5 + "_" + fileName);
+            File dest = new File(dir, storedName);
             try {
                 file.transferTo(dest);
             } catch (IOException e) {
@@ -89,8 +92,29 @@ public class FileService {
             fileBodyPO.setMd5(md5);
             fileBodyPO.setType(FileUtil.getType(dest));
             fileBodyPO.setScheme(FileSchemeEnum.valueOf(setting.getScheme()));
-            fileBodyPO.setPath(dest.getAbsolutePath());
+            // 存储相对路径（仅文件名），避免环境变更导致路径失效
+            fileBodyPO.setPath(storedName);
             fileBodyService.save(fileBodyPO);
+        } else {
+            // 秒传命中但物理文件不存在（如旧数据来自其他环境），重新保存文件
+            String resolvedPath = resolveFilePath(fileBodyPO.getPath());
+            if (!new File(resolvedPath).exists()) {
+                String storedName = md5 + "_" + fileName;
+                File dir = new File(setting.getTempUploadPath());
+                if (!dir.exists() && !dir.mkdirs()) {
+                    throw new RuntimeException("创建上传目录失败: " + dir.getAbsolutePath());
+                }
+                File dest = new File(dir, storedName);
+                try {
+                    file.transferTo(dest);
+                } catch (IOException e) {
+                    throw new RuntimeException("保存上传文件失败", e);
+                }
+                // 更新路径（文件名可能因环境不同而变化）
+                fileBodyPO.setPath(storedName);
+                fileBodyService.updateById(fileBodyPO);
+                log.info("秒传物理文件缺失，已重新保存: {}", storedName);
+            }
         }
 
         FileHeaderPO fileHeaderPO = new FileHeaderPO();
@@ -126,11 +150,35 @@ public class FileService {
             throw new RuntimeException("文件体不存在");
         }
         FileSchemeStrategy strategy = fileSchemeContext.getFileSchemeStrategy(setting.getScheme());
-        return strategy.getFile(body.getPath());
+        return strategy.getFile(resolveFilePath(body.getPath()));
     }
 
     public FileHeaderPO getFileInfo(String id) {
         return fileHeaderService.getById(id);
+    }
+
+    /**
+     * 解析文件存储路径：将数据库中存储的路径解析为绝对路径
+     * <p>
+     * 兼容旧数据：如果存储的是绝对路径且文件存在，直接使用；
+     * 否则基于 tempUploadPath 解析。
+     * </p>
+     */
+    public String resolveFilePath(String storedPath) {
+        if (storedPath == null || storedPath.isBlank()) {
+            return storedPath;
+        }
+        File storedFile = new File(storedPath);
+        // 1. 绝对路径且文件存在（兼容旧数据），直接返回
+        if (storedFile.isAbsolute() && storedFile.exists()) {
+            return storedPath;
+        }
+        // 2. 提取文件名，基于 tempUploadPath 解析
+        //    兼容旧绝对路径（如 /tmp/knowledge/upload/xxx.docx → 取 xxx.docx）
+        //    以及新数据（直接存的文件名）
+        String fileName = storedFile.getName();
+        Path basePath = Paths.get(setting.getTempUploadPath());
+        return basePath.resolve(fileName).toString();
     }
 
     /**
@@ -160,7 +208,7 @@ public class FileService {
         fileBodyService.removeById(bodyId);
         // 删除磁盘文件
         if (body != null && body.getPath() != null && !body.getPath().isBlank()) {
-            File file = new File(body.getPath());
+            File file = new File(resolveFilePath(body.getPath()));
             if (file.exists() && !file.delete()) {
                 log.warn("磁盘文件删除失败: {}", body.getPath());
             }

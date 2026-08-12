@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import java.time.Duration;
+
 /**
  * RAG 配置 - 动态从数据库加载启用的默认模型
  */
@@ -60,6 +62,7 @@ public class RagConfig {
                 .apiKey(model.getApiKey())
                 .modelName(model.getModelName())
                 .baseUrl(baseUrl)
+                .timeout(Duration.ofSeconds(60))
                 .build();
     }
 }
